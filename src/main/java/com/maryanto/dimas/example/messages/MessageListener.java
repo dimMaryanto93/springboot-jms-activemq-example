@@ -10,7 +10,7 @@ public class MessageListener {
 
     private static final Logger console = LoggerFactory.getLogger(MessageListener.class);
 
-    @JmsListener(destination = "mailbox", containerFactory = "myFactory")
+    @JmsListener(destination = "mailbox", containerFactory = "messageFactory")
     public void receiveMessage(MessageData data) {
         console.info("message arrive : {}", data);
     }

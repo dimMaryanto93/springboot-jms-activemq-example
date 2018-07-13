@@ -17,7 +17,7 @@ import javax.jms.ConnectionFactory;
 public class JmsConfiguration {
 
     @Bean
-    public JmsListenerContainerFactory<?> myFactory(
+    public JmsListenerContainerFactory<?> messageFactory(
             ConnectionFactory connectionFactory,
             DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();

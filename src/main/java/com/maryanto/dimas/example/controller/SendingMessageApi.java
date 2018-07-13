@@ -14,7 +14,7 @@ import static org.springframework.http.ResponseEntity.ok;
 public class SendingMessageApi {
 
     @Autowired
-    JmsTemplate template;
+    private JmsTemplate template;
 
     @PostMapping("/message/send")
     public ResponseEntity<?> sending(@RequestBody MessageData message) {

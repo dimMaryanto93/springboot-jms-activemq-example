@@ -3,7 +3,7 @@
 Belajar Java Messaging dengan Apache ActiveMQ
 
 - Queue
-- Publisher/Subscriber
+- Publisher / Subscriber
 - Send / Response
 
 ## Required

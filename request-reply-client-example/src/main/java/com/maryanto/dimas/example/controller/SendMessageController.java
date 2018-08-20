@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.UUID;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -25,10 +27,11 @@ public class SendMessageController {
     private JmsTemplate template;
 
     @PostMapping("/message/send")
-    public ResponseEntity<?> sending(@RequestBody PingRequest message) {
+    public ResponseEntity<?> sending(@Valid @RequestBody PingRequest message, HttpServletRequest request) {
         String uuid = UUID.randomUUID().toString();
         console.info("requestId: {}", uuid);
         message.setRequestId(uuid);
+        message.setIpAddress(request.getRemoteAddr());
         template.convertAndSend("ping-request", message);
         PingResponse receive = (PingResponse) template.receiveAndConvert("ping-response");
         return ok().body(receive);

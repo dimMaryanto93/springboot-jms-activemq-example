@@ -1,9 +1,11 @@
 package com.maryanto.dimas.messages.models;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class PingRequest implements Serializable {
 
+    @NotNull
     private String requestId;
     private String ipAddress;
 

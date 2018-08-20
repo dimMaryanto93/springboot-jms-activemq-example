@@ -10,7 +10,7 @@ send message:
 
 ```bash
 curl -X POST \
-  http://localhost:8080/message/send \
+  http://localhost:9090/message/send \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
   -d ' {
@@ -21,4 +21,4 @@ curl -X POST \
 
 ## Arsitektur application
 
-![arsitketur queue](./imgs/architecture.jpg)
+![arsitketur queue](imgs/publisher-subscriber-arsitektur.jpg)

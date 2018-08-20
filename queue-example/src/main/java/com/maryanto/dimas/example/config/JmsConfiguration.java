@@ -19,8 +19,10 @@ public class JmsConfiguration {
     @Bean
     public JmsListenerContainerFactory<?> messageFactory(
             ConnectionFactory connectionFactory,
-            DefaultJmsListenerContainerFactoryConfigurer configurer) {
+            DefaultJmsListenerContainerFactoryConfigurer configurer,
+            MessageConverter converter) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+        factory.setMessageConverter(converter);
         configurer.configure(factory, connectionFactory);
         return factory;
     }

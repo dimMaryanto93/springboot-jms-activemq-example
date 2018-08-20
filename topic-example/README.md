@@ -21,4 +21,4 @@ curl -X POST \
 
 ## Arsitektur application
 
-![arsitketur queue](./imgs/arc.jpg)
+![arsitketur queue](./imgs/architecture.jpg)

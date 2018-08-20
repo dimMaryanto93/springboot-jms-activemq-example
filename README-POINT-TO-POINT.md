@@ -1,4 +1,4 @@
-# Queue JmsTemplate
+# Point to Point Method
 
 run the application:
 

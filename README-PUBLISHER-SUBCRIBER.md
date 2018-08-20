@@ -1,4 +1,4 @@
-# Topic JmsTemplate
+# Publisher / Subcriber Method
 
 run the application:
 

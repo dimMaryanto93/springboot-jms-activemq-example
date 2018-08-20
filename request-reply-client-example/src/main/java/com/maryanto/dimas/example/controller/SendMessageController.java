@@ -32,6 +32,7 @@ public class SendMessageController {
         message.setIpAddress(request.getRemoteAddr());
         template.convertAndSend("ping-request", message);
         PingResponse receive = (PingResponse) template.receiveAndConvert("ping-response");
+        console.info("requestId: {}, response: {}", message.getRequestId(), receive);
         return ok().body(receive);
     }
 }

@@ -49,12 +49,11 @@ Message queue, dilewatkan melalui HTTP. ada beberapa protocol standar untuk meng
 
 ## Modules
 
-| service                       | port              | ref module                    | keterangan                            |
-| :---                          | :---              | :---                          | :---                                  |
-| queue-example                 | 8080              | -                             | point to point, as send and recived   |
-| topic-example                 | 9090 s/d 9999     | -                             | topic, as publisher and subcriber     |
-| request-reply-server-example  | 10000             | request-reply-client-example  | point to point as send                |
-| request-reply-client-example  | 10001             | request-reply-server-example  | point to ponit as recived             |
+| service                | port     | keterangan                                                |
+| :---                   | :---     | :---                                                      |
+| [queue-example](README-POINT-TO-POINT.md)          | 8080     | point to point, as send and recived                       |
+| [topic-example](README-PUBLISHER-SUBCRIBER.md)          | 9090     | topic, as publisher and subcriber                         |
+| request-reply-example  | 10000    | point to point as sender it'will be callback on received  |
 
 ## Referensi
 

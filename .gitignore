@@ -1,5 +1,5 @@
-/target/
-!.mvn/wrapper/maven-wrapper.jar
+target/
+.mvn/
 
 ### STS ###
 .apt_generated
@@ -17,9 +17,12 @@
 *.ipr
 
 ### NetBeans ###
-/nbproject/private/
-/build/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+## systemfiles
+.DS_Store

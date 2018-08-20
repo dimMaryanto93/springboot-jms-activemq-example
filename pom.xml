@@ -6,10 +6,14 @@
     <groupId>com.maryanto.dimas.example</groupId>
     <artifactId>springboot-messageing-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>springboot-messageing-example</name>
     <description>Demo project for Spring Boot</description>
+
+    <modules>
+        <module>queue-example</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

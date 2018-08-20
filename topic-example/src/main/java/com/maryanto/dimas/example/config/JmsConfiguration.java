@@ -38,9 +38,10 @@ public class JmsConfiguration {
     }
 
     @Bean
-    public JmsTemplate topicTemplate(ConnectionFactory connectionFactory) {
+    public JmsTemplate topicTemplate(ConnectionFactory connectionFactory, MessageConverter converter) {
         JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
         jmsTemplate.setPubSubDomain(true);
+        jmsTemplate.setMessageConverter(converter);
         return jmsTemplate;
     }
 

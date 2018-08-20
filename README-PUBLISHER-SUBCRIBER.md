@@ -3,6 +3,8 @@
 run the application:
 
 ```bash
+cd topic-example
+
 mvn clean spring-boot:run
 ```
 

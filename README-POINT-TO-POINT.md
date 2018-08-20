@@ -3,6 +3,8 @@
 run the application:
 
 ```bash
+cd queue-example
+
 mvn clean spring-boot:run
 ```
 

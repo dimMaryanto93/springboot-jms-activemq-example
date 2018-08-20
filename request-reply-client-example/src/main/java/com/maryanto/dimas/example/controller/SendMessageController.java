@@ -26,7 +26,9 @@ public class SendMessageController {
     private JmsTemplate template;
 
     @PostMapping("/message/send")
-    public ResponseEntity<?> sending(@Valid @RequestBody PingRequest message, HttpServletRequest request) {
+    public ResponseEntity<?> sending(
+            @Valid @RequestBody PingRequest message,
+            HttpServletRequest request) {
         message.setIpAddress(request.getRemoteAddr());
         template.convertAndSend("ping-request", message);
         PingResponse receive = (PingResponse) template.receiveAndConvert("ping-response");

@@ -1,8 +1,5 @@
 # Queue JmsTemplate
 
-
-Untuk mengakases halaman admin activemq : [http://localhost:8161](http://localhost:8161/admin/) dengan user default yaitu `admin` dan passwordnya `admin`.
-
 run the application:
 
 ```bash
@@ -21,3 +18,7 @@ curl -X POST \
 	        "data" : "addon message"
         }'
 ```
+
+## Arsitektur application
+
+![arsitketur queue](./imgs/arc.jpg)

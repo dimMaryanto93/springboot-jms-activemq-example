@@ -13,6 +13,7 @@
 
     <modules>
         <module>queue-example</module>
+        <module>send-reply-example</module>
     </modules>
 
     <parent>

@@ -1,5 +1,6 @@
 package com.maryanto.dimas.example.config;
 
+import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,12 +18,19 @@ import javax.jms.ConnectionFactory;
 public class JmsConfiguration {
 
     @Bean
+    public ActiveMQQueue defaultQueue() {
+        return new ActiveMQQueue("requestQueue");
+    }
+
+    @Bean
     public JmsListenerContainerFactory<?> messageFactory(
             ConnectionFactory connectionFactory,
             DefaultJmsListenerContainerFactoryConfigurer configurer,
             MessageConverter converter) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setMessageConverter(converter);
+        factory.setReceiveTimeout(1000l);
+        factory.setSessionTransacted(true);
         configurer.configure(factory, connectionFactory);
         return factory;
     }

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
@@ -24,6 +23,8 @@ public class JmsConfiguration {
             MessageConverter converter) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setMessageConverter(converter);
+        factory.setSessionTransacted(true);
+        factory.setReceiveTimeout(5000l);
         configurer.configure(factory, connectionFactory);
         return factory;
     }
@@ -37,13 +38,4 @@ public class JmsConfiguration {
     }
 
 
-    @Bean
-    public JmsTemplate queueTemplate(
-            ConnectionFactory connectionFactory,
-            MessageConverter converter) {
-        JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
-        jmsTemplate.setPubSubDomain(false);
-        jmsTemplate.setMessageConverter(converter);
-        return jmsTemplate;
-    }
 }

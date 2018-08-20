@@ -22,7 +22,11 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.maryanto.dimas.example</groupId>
+            <artifactId>jms-request-reply-messages-example</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

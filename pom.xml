@@ -16,6 +16,7 @@
         <module>topic-example</module>
         <module>request-reply-server-example</module>
         <module>request-reply-client-example</module>
+        <module>request-reply-messages-example</module>
     </modules>
 
     <parent>

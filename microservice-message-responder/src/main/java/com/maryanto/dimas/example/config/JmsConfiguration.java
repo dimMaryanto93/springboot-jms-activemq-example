@@ -20,7 +20,14 @@ import javax.jms.ConnectionFactory;
 public class JmsConfiguration {
 
     @Bean
-    public JmsTemplate jmsTemplate(MessageConverter converter, ConnectionFactory connectionFactory){
+    public JmsTransactionManager transactionManager(ConnectionFactory connectionFactory) {
+        JmsTransactionManager transactionManager = new JmsTransactionManager(connectionFactory);
+        transactionManager.setDefaultTimeout(5000);
+        return transactionManager;
+    }
+
+    @Bean
+    public JmsTemplate jmsTemplate(MessageConverter converter, ConnectionFactory connectionFactory) {
         JmsTemplate template = new JmsTemplate(connectionFactory);
         template.setMessageConverter(converter);
         template.setReceiveTimeout(5000);
@@ -29,16 +36,10 @@ public class JmsConfiguration {
     }
 
     @Bean
-    public JmsTransactionManager transactionManager(ConnectionFactory connectionFactory){
-        JmsTransactionManager transactionManager = new JmsTransactionManager(connectionFactory);
-        transactionManager.setDefaultTimeout(5000);
-        return transactionManager;
-    }
-
-    @Bean
-    public JmsMessagingTemplate jmsMessagingTemplate(ConnectionFactory connectionFactory ,JmsTemplate jmsTemplate, MessageConverter converter) {
+    public JmsMessagingTemplate jmsMessagingTemplate(
+            ConnectionFactory connectionFactory,
+            JmsTemplate jmsTemplate) {
         JmsMessagingTemplate template = new JmsMessagingTemplate(jmsTemplate);
-//        template.setJmsMessageConverter(converter);
         template.setConnectionFactory(connectionFactory);
         template.setJmsTemplate(jmsTemplate);
         template.afterPropertiesSet();
@@ -50,7 +51,7 @@ public class JmsConfiguration {
             ConnectionFactory connectionFactory,
             JmsTransactionManager transactionManager,
             DefaultJmsListenerContainerFactoryConfigurer configurer,
-            MessageConverter converter){
+            MessageConverter converter) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setMessageConverter(converter);
         factory.setTransactionManager(transactionManager);
@@ -59,7 +60,7 @@ public class JmsConfiguration {
         return factory;
     }
 
-    @Bean // Serialize message content to json using TextMessage
+    @Bean
     public MessageConverter jacksonJmsMessageConverter() {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);

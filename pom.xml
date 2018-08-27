@@ -17,6 +17,8 @@
         <module>request-reply-server-example</module>
         <module>request-reply-client-example</module>
         <module>request-reply-messages-example</module>
+        <module>microservice-message-requester</module>
+        <module>microservice-message-responder</module>
     </modules>
 
     <parent>

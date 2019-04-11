@@ -21,7 +21,10 @@ public class SendingMessageApi {
 
     @PostMapping("/request/message/test")
     public ResponseEntity<?> test(@RequestBody TestMessageRequest message) {
-        template.convertAndSend("/queue/message/test", message);
+        for (int i = 0; i < 40; i++) {
+            SendingThread s = new SendingThread(message.getRequestId() + "-" + i);
+            s.start();
+        }
         return ok().body("Message terkirim");
     }
 
@@ -42,5 +45,38 @@ public class SendingMessageApi {
                 message,
                 UserMessageResponse.class);
         return ok().body(response);
+    }
+
+    private class SendingThread implements Runnable {
+
+        private Thread t;
+        private String threadName;
+
+        public SendingThread(String threadName) {
+            this.threadName = threadName;
+            System.out.println("Creating " + threadName);
+        }
+
+        public void start() {
+            System.out.println("Starting " + threadName);
+            if (t == null) {
+                t = new Thread(this, threadName);
+                t.start();
+            }
+        }
+
+        @Override
+        public void run() {
+            System.out.println("Running " + threadName);
+            try {
+                for (int i = 0; i < 1000; i++) {
+                    template.convertAndSend("/queue/message/test", threadName + " " + i);
+                    Thread.sleep(1);
+                }
+            } catch (InterruptedException e) {
+                System.out.println("Thread " + threadName + " interrupted.");
+            }
+            System.out.println("Thread " + threadName + " exiting.");
+        }
     }
 }
